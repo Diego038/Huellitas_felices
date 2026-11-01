@@ -1,0 +1,256 @@
+/* CONFIGURACIÓN GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* FONDO NARANJA ORIGINAL */
+.fo {
+    width: 100%;
+    height: 50%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #F09936;
+    z-index: 0;
+}
+
+/* CONTENEDOR DEL FORMULARIO */
+.contenedor {
+    position: absolute;
+    width: 606px;
+    height: 387px;
+    top: 22%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* IMAGEN DEL USUARIO */
+.logo {
+    position: absolute;
+    width: 170px;
+    height: 150px;
+    top: -116px;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* FORMULARIO ORIGINAL */
+form {
+    width: 100%;
+    height: 100%;
+    border: 3px solid black;
+    background-color: white;
+    border-radius: 0;
+    box-shadow: none;
+    position: relative;
+}
+
+/* TÍTULO */
+form h1 {
+    position: absolute;
+    width: 100%;
+    top: 32px;
+    left: 0;
+    text-align: center;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 50px;
+    color: black;
+}
+
+/* CAMPO DE CORREO */
+form input:nth-of-type(1) {
+    position: absolute;
+    top: 108px;
+    left: 15%;
+    width: 70%;
+    height: 60px;
+    padding: 0 10px;
+    border: 3px solid #F09936;
+    border-radius: 20px;
+    background-color: white;
+    font-size: 13px;
+}
+
+/* CAMPO DE CONTRASEÑA */
+form input:nth-of-type(2) {
+    position: absolute;
+    top: 188px;
+    left: 15%;
+    width: 70%;
+    height: 60px;
+    padding: 0 10px;
+    border: 3px solid #F09936;
+    border-radius: 20px;
+    background-color: white;
+    font-size: 13px;
+}
+
+/* BOTÓN ORIGINAL MORADO Y ROJO */
+form button {
+    position: absolute;
+    top: 288px;
+    left: 15%;
+    width: 70%;
+    height: 55px;
+    border: 3px solid #F09936;
+    border-radius: 20px;
+    background: linear-gradient(to left, #ff3300, #2600ff);
+    color: black;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+form button:hover {
+    opacity: 0.9;
+}
+
+/* MENSAJE DE ERROR */
+.error {
+    position: absolute;
+    top: 350px;
+    left: 5%;
+    width: 90%;
+    color: #a00000;
+    background-color: #ffe6e6;
+    padding: 8px;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+.m{
+    position: relative;
+    left: 16%;
+    top: 69%;
+    color: black;
+    text-decoration: none;
+}
+/* TABLETAS */
+@media (max-width: 768px) {
+    .contenedor {
+        width: 85%;
+        max-width: 606px;
+        top: 24%;
+    }
+
+    .logo {
+        width: 135px;
+        height: 125px;
+        top: -95px;
+    }
+
+    form h1 {
+        font-size: 44px;
+    }
+
+    form input:nth-of-type(1),
+    form input:nth-of-type(2),
+    form button {
+        left: 10%;
+        width: 80%;
+    }
+
+    .fo {
+        height: 50%;
+    }
+}
+
+/* CELULARES */
+@media (max-width: 480px) {
+    body {
+        min-height: 100vh;
+    }
+
+    .contenedor {
+        width: 92%;
+        height: 350px;
+        top: 26%;
+    }
+
+    .logo {
+        width: 105px;
+        height: 100px;
+        top: -75px;
+    }
+
+    form {
+        height: 350px;
+        border-width: 3px;
+    }
+
+    form h1 {
+        top: 30px;
+        font-size: 34px;
+    }
+
+    form input:nth-of-type(1) {
+        top: 100px;
+        height: 52px;
+        left: 7%;
+        width: 86%;
+        font-size: 12px;
+    }
+
+    form input:nth-of-type(2) {
+        top: 170px;
+        height: 52px;
+        left: 7%;
+        width: 86%;
+        font-size: 12px;
+    }
+
+    form button {
+        top: 250px;
+        height: 52px;
+        left: 7%;
+        width: 86%;
+    }
+
+    .error {
+        top: 310px;
+        font-size: 10px;
+    }
+
+    .fo {
+        height: 50%;
+    }
+}
+
+/* CELULARES MUY PEQUEÑOS */
+@media (max-width: 320px) {
+    .contenedor {
+        width: 94%;
+        top: 25%;
+    }
+
+    .logo {
+        width: 90px;
+        height: 85px;
+        top: -65px;
+    }
+
+    form h1 {
+        font-size: 30px;
+    }
+
+    form input:nth-of-type(1),
+    form input:nth-of-type(2) {
+        font-size: 11px;
+    }
+}

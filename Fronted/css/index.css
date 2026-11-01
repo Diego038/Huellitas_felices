@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffaf4;
+}
+
+/* MENU PRINCIPAL */
+header {
+    width: 100%;
+    min-height: 100px;
+    background-color: #F09936;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+    padding: 10px 20px;
+}
+
+/* LOGO */
+header img:nth-of-type(1) {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+}
+
+/* ENLACES DEL MENU */
+header h2 {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+header h2 a {
+    color: white;
+    text-decoration: none;
+}
+
+header h2 a:hover {
+    color: black;
+}
+
+/* IMAGEN DEL USUARIO */
+header > a img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+header > a {
+    display: flex;
+    align-items: center;
+}
+
+/* BOTON PUBLICAR */
+header .i {
+    color: black;
+}
+
+header h2:nth-of-type(3) {
+    padding: 8px 15px;
+    background-color: #F09936;
+    border: 2px solid black;
+    border-radius: 30px;
+    font-size: 16px;
+}
+
+/* IMAGEN PRINCIPAL */
+.tem {
+    display: block;
+    width: 68%;
+    max-width: 1000px;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    margin: 50px auto 35px;
+    border: 3px solid #F09936;
+}
+
+/* IMAGENES DE ANIMALES */
+.paloma,
+.perro,
+.conejo,
+.gato {
+    width: 100%;
+    max-width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border: 3px solid black;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.paloma:hover,
+.perro:hover,
+.conejo:hover,
+.gato:hover {
+    transform: scale(1.05);
+}
+
+/* DISTRIBUCION DE LAS IMAGENES */
+body > a {
+    display: inline-block;
+    width: 21%;
+    margin: 15px 1.8%;
+    text-align: center;
+    vertical-align: top;
+}
+
+body > a img {
+    display: block;
+    margin: 0 auto;
+}
+
+/* TABLET */
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    header img:nth-of-type(1) {
+        width: 65px;
+        height: 65px;
+    }
+
+    header h2 {
+        font-size: 17px;
+    }
+
+    .tem {
+        width: 90%;
+        margin-top: 30px;
+    }
+
+    body > a {
+        width: 40%;
+        margin: 15px 4%;
+    }
+
+    .paloma,
+    .perro,
+    .conejo,
+    .gato {
+        max-width: 200px;
+        width: 100%;
+        height: 170px;
+    }
+}
+
+/* CELULARES */
+@media (max-width: 480px) {
+    header {
+        justify-content: center;
+        gap: 15px;
+        padding: 12px 8px;
+    }
+
+    header img:nth-of-type(1) {
+        width: 60px;
+        height: 60px;
+    }
+
+    header h2 {
+        font-size: 15px;
+    }
+
+    header h2:nth-of-type(3) {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    header > a img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .tem {
+        width: 94%;
+        margin: 25px auto;
+        max-height: 200px;
+    }
+
+    body > a {
+        width: 42%;
+        margin: 10px 3%;
+    }
+
+    .paloma,
+    .perro,
+    .conejo,
+    .gato {
+        width: 100%;
+        height: 130px;
+    }
+}
