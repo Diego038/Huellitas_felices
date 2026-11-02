@@ -1,32 +1,44 @@
+
 <?php
+session_start();
+
 include "../../Backend/php/conexion.php";
+
+$error = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $correo = trim($_POST["correo"] ?? "");
     $contrasena = $_POST["contrasena"] ?? "";
 
-    $contrasena_segura = password_hash(
-        $contrasena,
-        PASSWORD_DEFAULT
-    );
-
-    $sql = "INSERT INTO usuarios (correo, contrasena)
-            VALUES (?, ?)";
+    $sql = "SELECT * FROM usuarios WHERE correo = ?";
 
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("ss", $correo, $contrasena_segura);
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
 
-    if ($stmt->execute()) {
+    $resultado = $stmt->get_result();
+    $usuario = $resultado->fetch_assoc();
+
+    if ($usuario && password_verify($contrasena, $usuario["contrasena"])) {
+
+        session_regenerate_id(true);
+
+        $_SESSION["id_usuario"] = $usuario["id_usuario"];
+        $_SESSION["nombre"] = $usuario["nombre"] ?? "";
+        $_SESSION["correo"] = $usuario["correo"];
+
         $stmt->close();
         $conexion->close();
 
-        header("Location: inicio_sesion.php");
+        header("Location: ../index.html");
         exit;
+
     } else {
-        $error = "Error de MySQL: " . $stmt->error;
-        $stmt->close();
+        $error = "Correo o contraseña incorrectos.";
     }
+
+    $stmt->close();
 }
 
 $conexion->close();
@@ -34,9 +46,10 @@ $conexion->close();
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta namea="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Registro | Huellitas Felices</title>
 
@@ -70,7 +83,7 @@ $conexion->close();
                 type="password"
                 name="contrasena"
                 placeholder="Ingresa tu contraseña"
-                autocomplete="new-password"
+                autocomplete="current-password"
                 required
             >
 
@@ -82,7 +95,9 @@ $conexion->close();
                 </p>
             <?php endif; ?>
 
-            <a class="m" href="http://localhost/huellitas_felices/Fronted/html/inicio_sesion.php">Crear cuenta</a>
+            <a class="m" href="http://localhost/huellitas_felices/Fronted/html/inicio_sesion.php">
+                Crear cuenta
+            </a>
 
         </form>
 

@@ -1,57 +1,105 @@
-<!DOCTYPE html>
-<html lang="es">
+
 <?php
+include "../../Backend/php/conexion.php";
+
 $mensaje = "";
 
-// Solo procesa los datos si se envió el formulario por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include "../../Backend/php/conexion.php";
 
-    // Usamos el operador ?? para evitar los errores de claves indefinidas
-    $nombre = $_POST["nombre"] ?? '';
-    $correo = $_POST["correo"] ?? '';
-    $contrasena = $_POST["contrasena"] ?? '';
+    $nombre = trim($_POST["nombre"] ?? "");
+    $correo = trim($_POST["correo"] ?? "");
+    $contrasena = $_POST["contrasena"] ?? "";
 
-    if (isset($conexion)) {
-        $sql = "INSERT INTO usuarios (nombre, correo, contrasena) VALUES ('$nombre', '$correo', '$contrasena')";
+    // Encriptar la contraseña
+    $contrasena_segura = password_hash($contrasena, PASSWORD_DEFAULT);
 
-        if ($conexion->query($sql) === TRUE) {
-            $mensaje = "¡Registro exitoso en Huellitas Felices!";
-        } else {
-            $mensaje = "Error: " . $conexion->error;
-        }
+    // Preparar consulta
+    $sql = "INSERT INTO usuarios (nombre, correo, contrasena)
+            VALUES (?, ?, ?)";
+
+    $stmt = $conexion->prepare($sql);
+
+    $stmt->bind_param("sss", $nombre, $correo, $contrasena_segura);
+
+    if ($stmt->execute()) {
+
+        $mensaje = "¡Registro exitoso en Huellitas Felices!";
+
     } else {
-        $mensaje = "No se pudo conectar a la base de datos.";
+
+        if ($conexion->errno == 1062) {
+            $mensaje = "Este correo ya está registrado.";
+        } else {
+            $mensaje = "Error al registrar: " . $stmt->error;
+        }
     }
+
+    $stmt->close();
 }
+
+$conexion->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de sesión - Huellitas Felices</title>
+
+    <title>Inicio de sesión</title>
+
     <link rel="stylesheet" href="../css/sesion.css?v=<?php echo time(); ?>">
     <link rel="icon" type="image/png" href="../img/log.png">
 </head>
+
 <body>
+
     <div class="fo"></div>
 
     <div class="contenedor-principal">
-        <img src="../img/users.png" alt="Usuario Huellitas Felices">
-        
-        <form action="" method="POST">
-            
-            <h1>Inicio de sesión</h1>
-            
-            <input type="text" name="nombre" placeholder="Ingresa tu nombre" required>
-            <input type="email" name="correo" placeholder="Ingresa tu correo electrónico" required>
-            <input type="password" name="contrasena" placeholder="Ingresa tu contraseña" required>
-            
-            <button type="submit">Iniciar sesión</button>
 
-            <a class="m" href="http://localhost/huellitas_felices/Fronted/html/registro.php">Registrarse</a>
+        <img src="../img/users.png" alt="Usuario Huellitas Felices">
+
+        <form action="" method="POST">
+
+            <h1>Crear cuenta</h1>
+
+            <input
+                type="text"
+                name="nombre"
+                placeholder="Ingresa tu nombre"
+                required
+            >
+
+            <input
+                type="email"
+                name="correo"
+                placeholder="Ingresa tu correo electrónico"
+                required
+            >
+
+            <input
+                type="password"
+                name="contrasena"
+                placeholder="Ingresa tu contraseña"
+                autocomplete="new-password"
+                required
+            >
+
+            <button type="submit">Crear cuenta</button>
+
+            <?php if (!empty($mensaje)): ?>
+                <p><?php echo htmlspecialchars($mensaje); ?></p>
+            <?php endif; ?>
+
+            <a class="m" href="http://localhost/huellitas_felices/Fronted/html/registro.php">
+                Iniciar sesión
+            </a>
 
         </form>
+
     </div>
+
 </body>
 </html>

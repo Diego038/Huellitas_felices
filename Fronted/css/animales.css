@@ -2,73 +2,67 @@
     margin: 0%;
     padding: 0%;
 }
-header{
-    width: 100%;
-    height: 100px;
-    position: absolute;
-    left: 0%;
-    top: 0%;
-    background-color: #F09936;
-}
-header img:nth-of-type(1){
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 2px;
-    left: 30px;
-}
-header a{
-    position: absolute;
-    top: 20px;
-    left: 90%;
-}
-header img:nth-of-type(2){
-    width: 85px;
-    height: 85px;
-}
-.o{
-    position: absolute;
-    top: 0px;
-    left: 90%;
-}
-header h2:nth-of-type(1){
-    position: absolute;
-    top: 35px;
-    left: 20%;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-}
-header h2:nth-of-type(2){
-    position: absolute;
-    top: 35px;
-    left: 37%;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-}
-header h2:nth-of-type(3){
-    width: 100px;
-    height: 20px;
-    position: absolute;
-    top: 35px;
-    left: 65%;
-    background-color: #F09936;
-    border-radius: 30px;
-    border: solid black 2px;
-    text-align: center; 
-    font-size: medium;
-}
-.i{
-    position: absolute;
-    top: 3px;
-    left: 22%;
+a{
+    text-decoration: none;
     color: black;
 }
-header a {
+/* MENU PRINCIPAL */
+header {
+    width: 97.1%;
+    min-height: 100px;
+    background-color: #F09936;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+    padding: 10px 20px;
+}
+
+/* LOGO */
+header img:nth-of-type(1) {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+}
+
+/* ENLACES DEL MENU */
+header h2 {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+header h2 a {
+    color: black;
     text-decoration: none;
-    color: white;
-    position: relative;
-    top: 4px;
-    text-align: center;
+}
+
+header h2 a:hover {
+    color: black;
+}
+
+/* IMAGEN DEL USUARIO */
+header a img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+header a {
+    display: flex;
+    align-items: center;
+}
+
+/* BOTON PUBLICAR */
+header .i {
+    color: black;
+}
+
+header h2:nth-of-type(3) {
+    padding: 8px 15px;
+    background-color: #F09936;
+    border: 2px solid black;
+    border-radius: 30px;
+    font-size: 16px;
 }
 section{
     width: 100%;
@@ -108,4 +102,42 @@ section div:nth-child(2) img{
     top: 10px;
     left: 20px;
     border: solid 3px black;
+}
+/* VENTANA DE CONTACTO */
+#ventana-contacto {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.contenido-contacto {
+    background-color: white;
+    color: black;
+    width: 500px;
+    height: 400px;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+}
+
+#cerrar-contacto {
+    color: black;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#abrir-contacto {
+    cursor: pointer;
 }

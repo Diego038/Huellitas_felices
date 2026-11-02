@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
         <header>
             <h2 ><a href="">Marketplace</a></h2>
-            <h2><a href="">Contacto</a></h2>
+            <h2 id="abrir-contacto">Contacto</h2>
             <img src="../img/log.png" alt="">
             <a class="o" href="http://localhost/huellitas_felices/Fronted/html/registro.php"><img src="../img/user.png" alt=""></a>
             <h2>Publicar</h2>
@@ -95,5 +95,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <button type="submit" name="tipo_animal" value="gato">Gato</button>
 <button type="submit" name="tipo_animal" value="perro">Perro</button>
         </form>
-    </body>
+    <div id="ventana-contacto">
+
+    <div class="contenido-contacto">
+        <span id="cerrar-contacto">&times;</span>
+        <h2>Contáctanos</h2><br><br><br><br>
+        <p>Teléfono: 7604-5145</p><br><br><br>
+        <p>Instagram: <a href="https://www.instagram.com/huellitas_felices_/">Huellitas_felices</a></p>
+    </div>
+
+</div>
+<script src="../../Backend/js/contacto.js"></script>
+</body>
     </html>
